@@ -131,6 +131,210 @@ def search_song(songs):
     if not found:
         print("\nSong not found.")
 
+#Wei HONG recommendation system
+print("================================")
+print("     MUSIC RECOMMENDATION")
+print("================================")
+
+# Mood selection
+print("\nChoose your mood:")
+print("1. Happy")
+print("2. Relaxed")
+print("3. Sad")
+print("4. Energetic")
+
+mood_choice = int(input("\nEnter your choice: "))
+
+moods = {
+    1: "Happy",
+    2: "Relaxed",
+    3: "Sad",
+    4: "Energetic"
+}
+
+mood = moods.get(mood_choice)
+
+# Genre selection
+print("\nChoose your genre:")
+print("1. Pop")
+print("2. K-Pop")
+print("3. R&B")
+print("4. Rock")
+
+genre_choice = int(input("\nEnter your choice: "))
+
+genres = {
+    1: "Pop",
+    2: "K-Pop",
+    3: "R&B",
+    4: "Rock"
+}
+
+genre = genres.get(genre_choice)
+
+# Song recommendations
+songs = {
+
+    # Happy
+    (1, 1): [
+        "Espresso - Sabrina Carpenter",
+        "Levitating - Dua Lipa",
+        "Shake It Off - Taylor Swift",
+        "Good Time - Owl City & Carly Rae Jepsen",
+        "Flowers - Miley Cyrus"
+    ],
+
+    (1, 2): [
+        "Super Shy - NewJeans",
+        "Dynamite - BTS",
+        "Cupid - FIFTY FIFTY",
+        "After LIKE - IVE",
+        "Queencard - (G)I-DLE"
+    ],
+
+    (1, 3): [
+        "Leave The Door Open - Silk Sonic",
+        "Treasure - Bruno Mars",
+        "Kiss Me More - Doja Cat ft. SZA",
+        "Sunday Morning - Maroon 5",
+        "Best Part - Daniel Caesar ft. H.E.R."
+    ],
+
+    (1, 4): [
+        "Shut Up and Dance - WALK THE MOON",
+        "Don't Stop Me Now - Queen",
+        "Mr. Brightside - The Killers",
+        "Sugar, We're Goin Down - Fall Out Boy",
+        "Adventure of a Lifetime - Coldplay"
+    ],
+
+    # Relaxed
+    (2, 1): [
+        "golden hour - JVKE",
+        "Until I Found You - Stephen Sanchez",
+        "Perfect - Ed Sheeran",
+        "Ocean Eyes - Billie Eilish",
+        "Photograph - Ed Sheeran"
+    ],
+
+    (2, 2): [
+        "Ditto - NewJeans",
+        "Love Scenario - iKON",
+        "Through the Night - IU",
+        "Instagram - DEAN",
+        "Fairy of Shampoo - TOMORROW X TOGETHER"
+    ],
+
+    (2, 3): [
+        "Best Part - Daniel Caesar ft. H.E.R.",
+        "Get You - Daniel Caesar ft. Kali Uchis",
+        "Snooze - SZA",
+        "Location - Khalid",
+        "Adore You - Harry Styles"
+    ],
+
+    (2, 4): [
+        "Yellow - Coldplay",
+        "Sparks - Coldplay",
+        "The Scientist - Coldplay",
+        "Drive - Incubus",
+        "505 - Arctic Monkeys"
+    ],
+
+    # Sad
+    (3, 1): [
+        "drivers license - Olivia Rodrigo",
+        "Someone Like You - Adele",
+        "traitor - Olivia Rodrigo",
+        "When I Was Your Man - Bruno Mars",
+        "Happier - Ed Sheeran"
+    ],
+
+    (3, 2): [
+        "Holo - LeeHi",
+        "Lonely - 2NE1",
+        "Eight - IU ft. SUGA",
+        "Gone - ROSÉ",
+        "Ex - Stray Kids"
+    ],
+
+    (3, 3): [
+        "Lovely - Billie Eilish & Khalid",
+        "Call Out My Name - The Weeknd",
+        "Un-Break My Heart - Toni Braxton",
+        "Die For You - The Weeknd",
+        "we can't be friends - Ariana Grande"
+    ],
+
+    (3, 4): [
+        "The Night We Met - Lord Huron",
+        "Another Love - Tom Odell",
+        "Creep - Radiohead",
+        "Snuff - Slipknot",
+        "November Rain - Guns N' Roses"
+    ],
+
+    # Energetic
+    (4, 1): [
+        "Blinding Lights - The Weeknd",
+        "Uptown Funk - Mark Ronson ft. Bruno Mars",
+        "Don't Start Now - Dua Lipa",
+        "Starships - Nicki Minaj",
+        "One Kiss - Calvin Harris & Dua Lipa"
+    ],
+
+    (4, 2): [
+        "God's Menu - Stray Kids",
+        "Super - SEVENTEEN",
+        "MIC Drop - BTS",
+        "BANG BANG BANG - BIGBANG",
+        "I AM - IVE"
+    ],
+
+    (4, 3): [
+        "24K Magic - Bruno Mars",
+        "Yeah! - Usher ft. Lil Jon & Ludacris",
+        "Motive - Ariana Grande ft. Doja Cat",
+        "Can't Feel My Face - The Weeknd",
+        "OMG - Usher ft. will.i.am"
+    ],
+
+    (4, 4): [
+        "Believer - Imagine Dragons",
+        "Thunder - Imagine Dragons",
+        "Centuries - Fall Out Boy",
+        "The Pretender - Foo Fighters",
+        "Immigrant Song - Led Zeppelin"
+    ]
+}
+
+recommended_songs = songs.get((mood_choice, genre_choice))
+
+# Display recommendation
+print("\n--------------------------------")
+print("Recommended for you:")
+print("Genre:", genre)
+print("Mood:", mood)
+print("\nRecommended Songs:")
+
+for i, song in enumerate(recommended_songs, 1):
+    print(f"{i}. {song}")
+
+print("--------------------------------")
+
+#Wei Hong end of recommendation system
+
+def main_menu():
+    print("\n================================")
+    print("       SPOTIFY MUSIC ASSISTANT")
+    print("================================")
+    print("1. Add Song")
+    print("2. View My Playlist")
+    print("3. Search Song")
+    print("4. Remove Song")
+    print("5. Get Music Recommendation")
+    print("6. Exit")
+    print("================================")
     input("\nPress Enter to return to the main menu...")
 
 def main_menu(songs):
