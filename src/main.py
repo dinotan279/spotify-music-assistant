@@ -77,7 +77,7 @@ def add_song(songs):
 # Aloysius - VIEW PLAYLIST
 # =========================
 
-def view_playlist(songs):
+def view_playlist(songs): 
     clear_screen()
 
     print("========================================")
