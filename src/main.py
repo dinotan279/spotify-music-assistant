@@ -1,17 +1,24 @@
 import json
 import os
 
-DATA_FILE = "data/songs.json"
+SONGS_FILE = "data/songs.json"
+RECOMMENDATIONS_FILE = "data/recommendations.json"
+
+
+# =========================
+# SONG / PLAYLIST FUNCTIONS
+# =========================
 
 def load_songs():
-    if not os.path.exists(DATA_FILE):
+    if not os.path.exists(SONGS_FILE):
         return []
 
-    with open(DATA_FILE, "r", encoding="utf-8") as file:
+    with open(SONGS_FILE, "r", encoding="utf-8") as file:
         return json.load(file)
 
+
 def save_songs(songs):
-    with open(DATA_FILE, "w", encoding="utf-8") as file:
+    with open(SONGS_FILE, "w", encoding="utf-8") as file:
         json.dump(songs, file, indent=4)
 
 
@@ -34,8 +41,10 @@ def add_song(songs):
     save_songs(songs)
 
     print("\nSong added successfully!")
+
+
 # =========================
-# Aloysius - VIEW PLAYLIST
+# VIEW PLAYLIST
 # =========================
 
 def view_playlist(songs):
@@ -53,7 +62,7 @@ def view_playlist(songs):
 
 
 # =========================
-# Aloysius - SEARCH SONG
+# SEARCH SONG
 # =========================
 
 def search_song(songs):
@@ -78,198 +87,92 @@ def search_song(songs):
     if not found:
         print("\nSong not found.")
 
-#Wei HONG recommendation system
-print("================================")
-print("     MUSIC RECOMMENDATION")
-print("================================")
 
-# Mood selection
-print("\nChoose your mood:")
-print("1. Happy")
-print("2. Relaxed")
-print("3. Sad")
-print("4. Energetic")
+# =========================
+# WEI HONG - RECOMMENDATION
+# =========================
 
-mood_choice = int(input("\nEnter your choice: "))
+def music_recommendation():
 
-moods = {
-    1: "Happy",
-    2: "Relaxed",
-    3: "Sad",
-    4: "Energetic"
-}
+    print("\n================================")
+    print("     MUSIC RECOMMENDATION")
+    print("================================")
 
-mood = moods.get(mood_choice)
+    # Load recommendation JSON
+    if not os.path.exists(RECOMMENDATIONS_FILE):
+        print("\nRecommendation file not found.")
+        return
 
-# Genre selection
-print("\nChoose your genre:")
-print("1. Pop")
-print("2. K-Pop")
-print("3. R&B")
-print("4. Rock")
+    with open(RECOMMENDATIONS_FILE, "r", encoding="utf-8") as file:
+        recommendations = json.load(file)
 
-genre_choice = int(input("\nEnter your choice: "))
+    # Mood selection
+    print("\nChoose your mood:")
+    print("1. Happy")
+    print("2. Relaxed")
+    print("3. Sad")
+    print("4. Energetic")
 
-genres = {
-    1: "Pop",
-    2: "K-Pop",
-    3: "R&B",
-    4: "Rock"
-}
+    mood_choice = int(input("\nEnter your choice: "))
 
-genre = genres.get(genre_choice)
+    moods = {
+        1: "Happy",
+        2: "Relaxed",
+        3: "Sad",
+        4: "Energetic"
+    }
 
-# Song recommendations
-songs = {
+    mood = moods.get(mood_choice)
 
-    # Happy
-    (1, 1): [
-        "Espresso - Sabrina Carpenter",
-        "Levitating - Dua Lipa",
-        "Shake It Off - Taylor Swift",
-        "Good Time - Owl City & Carly Rae Jepsen",
-        "Flowers - Miley Cyrus"
-    ],
+    if mood is None:
+        print("\nInvalid mood choice.")
+        return
 
-    (1, 2): [
-        "Super Shy - NewJeans",
-        "Dynamite - BTS",
-        "Cupid - FIFTY FIFTY",
-        "After LIKE - IVE",
-        "Queencard - (G)I-DLE"
-    ],
+    # Genre selection
+    print("\nChoose your genre:")
+    print("1. Pop")
+    print("2. K-Pop")
+    print("3. R&B")
+    print("4. Rock")
 
-    (1, 3): [
-        "Leave The Door Open - Silk Sonic",
-        "Treasure - Bruno Mars",
-        "Kiss Me More - Doja Cat ft. SZA",
-        "Sunday Morning - Maroon 5",
-        "Best Part - Daniel Caesar ft. H.E.R."
-    ],
+    genre_choice = int(input("\nEnter your choice: "))
 
-    (1, 4): [
-        "Shut Up and Dance - WALK THE MOON",
-        "Don't Stop Me Now - Queen",
-        "Mr. Brightside - The Killers",
-        "Sugar, We're Goin Down - Fall Out Boy",
-        "Adventure of a Lifetime - Coldplay"
-    ],
+    genres = {
+        1: "Pop",
+        2: "K-Pop",
+        3: "R&B",
+        4: "Rock"
+    }
 
-    # Relaxed
-    (2, 1): [
-        "golden hour - JVKE",
-        "Until I Found You - Stephen Sanchez",
-        "Perfect - Ed Sheeran",
-        "Ocean Eyes - Billie Eilish",
-        "Photograph - Ed Sheeran"
-    ],
+    genre = genres.get(genre_choice)
 
-    (2, 2): [
-        "Ditto - NewJeans",
-        "Love Scenario - iKON",
-        "Through the Night - IU",
-        "Instagram - DEAN",
-        "Fairy of Shampoo - TOMORROW X TOGETHER"
-    ],
+    if genre is None:
+        print("\nInvalid genre choice.")
+        return
 
-    (2, 3): [
-        "Best Part - Daniel Caesar ft. H.E.R.",
-        "Get You - Daniel Caesar ft. Kali Uchis",
-        "Snooze - SZA",
-        "Location - Khalid",
-        "Adore You - Harry Styles"
-    ],
+    # Get recommended songs from JSON
+    recommended_songs = recommendations.get(mood, {}).get(genre, [])
 
-    (2, 4): [
-        "Yellow - Coldplay",
-        "Sparks - Coldplay",
-        "The Scientist - Coldplay",
-        "Drive - Incubus",
-        "505 - Arctic Monkeys"
-    ],
+    # Display recommendation
+    print("\n--------------------------------")
+    print("Recommended for you:")
+    print("Genre:", genre)
+    print("Mood:", mood)
 
-    # Sad
-    (3, 1): [
-        "drivers license - Olivia Rodrigo",
-        "Someone Like You - Adele",
-        "traitor - Olivia Rodrigo",
-        "When I Was Your Man - Bruno Mars",
-        "Happier - Ed Sheeran"
-    ],
+    print("\nRecommended Songs:")
 
-    (3, 2): [
-        "Holo - LeeHi",
-        "Lonely - 2NE1",
-        "Eight - IU ft. SUGA",
-        "Gone - ROSÉ",
-        "Ex - Stray Kids"
-    ],
+    if not recommended_songs:
+        print("No recommendations found.")
+    else:
+        for i, song in enumerate(recommended_songs[:5], 1):
+            print(f"{i}. {song}")
 
-    (3, 3): [
-        "Lovely - Billie Eilish & Khalid",
-        "Call Out My Name - The Weeknd",
-        "Un-Break My Heart - Toni Braxton",
-        "Die For You - The Weeknd",
-        "we can't be friends - Ariana Grande"
-    ],
+    print("--------------------------------")
 
-    (3, 4): [
-        "The Night We Met - Lord Huron",
-        "Another Love - Tom Odell",
-        "Creep - Radiohead",
-        "Snuff - Slipknot",
-        "November Rain - Guns N' Roses"
-    ],
 
-    # Energetic
-    (4, 1): [
-        "Blinding Lights - The Weeknd",
-        "Uptown Funk - Mark Ronson ft. Bruno Mars",
-        "Don't Start Now - Dua Lipa",
-        "Starships - Nicki Minaj",
-        "One Kiss - Calvin Harris & Dua Lipa"
-    ],
-
-    (4, 2): [
-        "God's Menu - Stray Kids",
-        "Super - SEVENTEEN",
-        "MIC Drop - BTS",
-        "BANG BANG BANG - BIGBANG",
-        "I AM - IVE"
-    ],
-
-    (4, 3): [
-        "24K Magic - Bruno Mars",
-        "Yeah! - Usher ft. Lil Jon & Ludacris",
-        "Motive - Ariana Grande ft. Doja Cat",
-        "Can't Feel My Face - The Weeknd",
-        "OMG - Usher ft. will.i.am"
-    ],
-
-    (4, 4): [
-        "Believer - Imagine Dragons",
-        "Thunder - Imagine Dragons",
-        "Centuries - Fall Out Boy",
-        "The Pretender - Foo Fighters",
-        "Immigrant Song - Led Zeppelin"
-    ]
-}
-
-recommended_songs = songs.get((mood_choice, genre_choice))
-
-# Display recommendation
-print("\n--------------------------------")
-print("Recommended for you:")
-print("Genre:", genre)
-print("Mood:", mood)
-print("\nRecommended Songs:")
-
-for i, song in enumerate(recommended_songs, 1):
-    print(f"{i}. {song}")
-
-print("--------------------------------")
-
-#Wei Hong end of recommendation system
+# =========================
+# MAIN MENU
+# =========================
 
 def main_menu():
     print("\n================================")
@@ -284,11 +187,14 @@ def main_menu():
     print("================================")
 
 
+# =========================
+# MAIN PROGRAM
+# =========================
 
 songs = load_songs()
 
-
 while True:
+
     main_menu()
 
     choice = input("Enter your choice: ")
@@ -297,16 +203,16 @@ while True:
         add_song(songs)
 
     elif choice == "2":
-        print("\nView My Playlist - Coming Soon")
+        view_playlist(songs)
 
     elif choice == "3":
-        print("\nSearch Song - Coming Soon")
+        search_song(songs)
 
     elif choice == "4":
         print("\nRemove Song - Coming Soon")
 
     elif choice == "5":
-        print("\nMusic Recommendation - Coming Soon")
+        music_recommendation()
 
     elif choice == "6":
         print("\nThank you for using Spotify Music Assistant!")
