@@ -21,6 +21,9 @@ def save_songs(songs):
     with open(DATA_FILE, "w", encoding="utf-8") as file:
         json.dump(songs, file, indent=4)
 
+# --------------------------------
+# Dino - Add Song
+# --------------------------------
 
 def add_song(songs):
     clear_screen()
