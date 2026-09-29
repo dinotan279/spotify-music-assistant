@@ -1,3 +1,4 @@
+#Dino
 import json
 import os
 
@@ -21,6 +22,7 @@ def save_songs(songs):
     with open(SONGS_FILE, "w", encoding="utf-8") as file:
         json.dump(songs, file, indent=4)
 
+# Dino - Add Song
 
 def add_song(songs):
     print("\n--- Add Song ---")
@@ -43,9 +45,7 @@ def add_song(songs):
     print("\nSong added successfully!")
 
 
-# =========================
-# VIEW PLAYLIST
-# =========================
+# Aloysius - VIEW PLAYLIST
 
 def view_playlist(songs):
     print("\n--- My Playlist ---")
@@ -60,10 +60,7 @@ def view_playlist(songs):
         print(f"   Genre: {song['genre']}")
         print(f"   Year: {song['year']}")
 
-
-# =========================
-# SEARCH SONG
-# =========================
+# Aloysius - SEARCH SONG
 
 def search_song(songs):
     print("\n--- Search Song ---")
@@ -88,9 +85,7 @@ def search_song(songs):
         print("\nSong not found.")
 
 
-# =========================
 # WEI HONG - RECOMMENDATION
-# =========================
 
 def music_recommendation():
 
