@@ -3,12 +3,20 @@
         "title": "FRIDAY 9 II",
         "artist": "KKluv",
         "genre": "pop",
-        "year": "2023"
+        "year": "2023",
+        "mood": "happy"
     },
     {
         "title": "Die with a smile",
         "artist": "Bruno Mars",
         "genre": "pop",
-        "year": "2025"
+        "year": "2025",
+        "mood": "sad"
+    },
+    {
+        "title": "The Night We Met",
+        "artist": "Lord Huron",
+        "genre": "Rock",
+        "year": "2015"
     }
 ]

@@ -2,6 +2,9 @@
 # Aloysius - VIEW PLAYLIST
 # =========================
 
+from recommendation import clear_screen
+
+
 def view_playlist(songs):
     clear_screen()
 
