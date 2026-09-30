@@ -66,7 +66,7 @@ while True:
     choice = input("Enter your choice: ").strip()
 
     if choice == "1":
-        add_song(songs)
+        add_song(songs,save_songs)
 
     elif choice == "2":
         view_playlist(songs)
