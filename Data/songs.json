@@ -12,5 +12,11 @@
         "genre": "pop",
         "year": "2025",
         "mood": "sad"
+    },
+    {
+        "title": "The Night We Met",
+        "artist": "Lord Huron",
+        "genre": "Rock",
+        "year": "2015"
     }
 ]

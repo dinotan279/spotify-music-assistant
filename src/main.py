@@ -236,7 +236,7 @@ while True:
         remove_song(songs)
 
     elif choice == "5":
-        get_music_recommendation(songs)
+        get_music_recommendation(songs, save_songs)
 
     elif choice == "0":
         print("\nThank you for using Spotify Music Assistant!")
