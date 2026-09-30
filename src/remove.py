@@ -1,8 +1,12 @@
 # =========================
 # Ethan Lim - REMOVE SONG
 # =========================
+import os
 
-def remove_song(songs):
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
+
+def remove_song(songs,save_songs):
     clear_screen()
 
     print("========================================")
@@ -21,22 +25,21 @@ def remove_song(songs):
 
     print("\nPress Enter without typing to cancel.")
 
-    title = input("\nEnter song title to remove: ").strip()
+    choice = input("\nEnter song number to remove: ").strip()
 
     # Input validation
-    if title == "":
+    if choice == "":
         print("\nRemove Song cancelled.")
         input("Press Enter to return to the main menu...")
         return
 
-    for song in songs:
-        if song["title"].lower() == title.lower():
-            songs.remove(song)
-            save_songs(songs)
+    if not choice.isdigit() or int(choice) < 1 or int(choice) > len(songs):
+        print("\nInvalid choice.")
+        input("Press Enter to return to the main menu...")
+        return
 
-            print(f"\n✓ '{song['title']}' removed successfully!")
-            input("\nPress Enter to return to the main menu...")
-            return
+    song = songs.pop(int(choice) - 1)
+    save_songs(songs)
 
-    print("\nSong not found in your playlist.")
-    input("Press Enter to return to the main menu...")
+    print(f"\n✓ '{song['title']}' removed successfully!")
+    input("\nPress Enter to return to the main menu...")

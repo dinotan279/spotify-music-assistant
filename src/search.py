@@ -1,6 +1,10 @@
 # =========================
 # Aloysius - SEARCH SONG
 # =========================
+import os
+
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
 
 def search_song(songs):
     clear_screen()
@@ -10,7 +14,7 @@ def search_song(songs):
     print("========================================")
 
     keyword = input("Enter song title or artist: ").lower()
-    input("\nPress Enter to return to the main menu...")
+    
     found = False
 
     for song in songs:
@@ -27,3 +31,5 @@ def search_song(songs):
 
     if not found:
         print("\nSong not found.")
+
+    input("\nPress Enter to return to the main menu...")
