@@ -6,7 +6,7 @@ import os
 def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
-def add_song(songs):
+def add_song(songs,save_songs):
     clear_screen()
 
     print("========================================")
